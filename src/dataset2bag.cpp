@@ -30,8 +30,10 @@ namespace po = boost::program_options;
 // Macros used to copy a cv::Mat into an array
 #define CP_MAT_TO_ARRAY(m, a) { for(auto i=0; i<(m).rows; i++) for(auto j=0; j<(m).cols; j++) (a)[i*(m).cols + j] = (m).ptr<double>(i)[j]; }
 #define CP_ARRAY_TO_MAT(a, m) { for(auto i=0; i<(m).rows; i++) for(auto j=0; j<(m).cols; j++) (m).ptr<double>(i)[j] = (a)[i*(m).cols + j]; }
+#if CV_MAJOR_VERSION >= 4
 #define CV_CAP_PROP_FRAME_COUNT cv::CAP_PROP_FRAME_COUNT //Added define for code to compile in OpenCV 4 and beyond.
 #define CV_CAP_PROP_POS_MSEC cv::CAP_PROP_POS_MSEC //Added define for code to compile in OpenCV 4 and beyond.
+#endif
 
 struct CameraParameters
 {
